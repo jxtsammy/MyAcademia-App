@@ -47,17 +47,6 @@ const LoginScreen = ({navigation}) => {
               />
               <Text style={styles.welcomeText}>Welcome back!</Text>
 
-              <View style={styles.inputContainer}>
-                <TextInput
-                  placeholder="Email"
-                  placeholderTextColor="#888"
-                  style={styles.input}
-                  keyboardType="email-address"
-                  returnKeyType="next"
-                  autoCapitalize="none"
-                />
-              </View>
-
               {/* Phone Number Input Container */}
               <View style={styles.phoneContainer}>
                 {/* Country Code Picker */}
@@ -127,7 +116,7 @@ const LoginScreen = ({navigation}) => {
                 style={styles.loginButton}
                 onPress={() => {
                   Keyboard.dismiss();
-                  navigation.navigate('OTPVerification');
+                  navigation.navigate('Home');
                 }}
               >
                 <Text style={styles.loginButtonText}>Login</Text>
