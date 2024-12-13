@@ -13,10 +13,10 @@ import ScheduleForm from './components/Timetable&Schedules/ScheduleForm'
 import AddTask from './components/TaskPlanner/AddTasks'
 import Tasks from './components/TaskPlanner/AddTasks';
 import CWACalculator from './components/AvgCalculator/AverageCalculator'
-import GetSignedUp from './components/IntroScreens/GetSignedUp'
-import ScheduleIntro from './components/IntroScreens/ScheduleIntro'
-import NotificationIntro from './components/IntroScreens/NotificationsIntro'
-import AiBotIntro from './components/IntroScreens/AiBotIntro'
+import GetSignedUp from './IntroScreens/GetSignedUp'
+import ScheduleIntro from './IntroScreens/ScheduleIntro'
+import NotificationIntro from './IntroScreens/NotificationsIntro'
+import AiBotIntro from './IntroScreens/AiBotIntro'
 import AiChatTip from './components/AiChat/ChatIntro'
 import AiChat from './components/AiChat/ChatScreen'
 import Home from './components/Home/Home'
@@ -74,7 +74,7 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="EnterMail"
+          name="EnterPhone"
           component={EnterPhone}
           options={{ headerShown: false }}
         />

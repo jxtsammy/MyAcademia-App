@@ -193,7 +193,7 @@ const TimetableScreen = ({ navigation }) => {
         </ScrollView>
       </View>
 
-      <TouchableOpacity style={styles.plusIcon} onPress={() => navigation.navigate('ScheduleForm')}>
+      <TouchableOpacity style={styles.plusIcon} onPress={() => navigation.navigate('ScheduleForms')}>
         <Ionicons name="add" size={30} color="#01796F" fontWeight="bold" />
       </TouchableOpacity>
     </SafeAreaView>
