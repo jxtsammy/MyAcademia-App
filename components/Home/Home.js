@@ -201,6 +201,7 @@ const Home = ({navigation}) => {
 
         {/* Overall Progress */}
         <View style={styles.overallProgressContainer} >
+          <TouchableOpacity onPress={() => navigation.navigate('Tasks')}>
           <View style={styles.overallProgressHeader}>
             <Text style={styles.overallProgressTitle}>Tasks Completed</Text>
             <Text style={styles.overallProgressPercentage}>{Math.round(totalCompletion)}%</Text>
@@ -208,6 +209,7 @@ const Home = ({navigation}) => {
           <View style={styles.overallProgressBarContainer}>
             <View style={[styles.overallProgressBar, { width: `${totalCompletion}%` }]} />
           </View>
+          </TouchableOpacity>
         </View>
 
         {/* Tools Container */}
