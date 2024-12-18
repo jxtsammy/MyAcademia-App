@@ -20,8 +20,8 @@ const SignUpScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [passwordError, setPasswordError] = useState('');
-  const [countryCode, setCountryCode] = useState('US');
-  const [callingCode, setCallingCode] = useState('1');
+  const [countryCode, setCountryCode] = useState('GH');
+  const [callingCode, setCallingCode] = useState('233');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryPickerVisible, setCountryPickerVisible] = useState(false);
 

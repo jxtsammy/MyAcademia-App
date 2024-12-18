@@ -18,8 +18,8 @@ import CountryPicker from 'react-native-country-picker-modal';
 
 const LoginScreen = ({navigation}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [countryCode, setCountryCode] = useState('US');
-  const [callingCode, setCallingCode] = useState('1');
+  const [countryCode, setCountryCode] = useState('GH');
+  const [callingCode, setCallingCode] = useState('233');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryPickerVisible, setCountryPickerVisible] = useState(false);
 
