@@ -2,6 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
+import { createDrawerNavigator} from '@react-navigation/drawer';
+import CustomDrawer from '../CustomNavigations/CustomDawer'
+import Tasks from '../TaskPlanner/Tasks'
+import CWACalculator from '../AvgCalculator/AverageCalculator'
+import AiChat from '../AiChat/ChatScreen'
+import EditProfile from '../ProfileSettings/EditProfile'
+import Home from '../Home/Home'
+
+
+const Drawer = createDrawerNavigator();
 
 const TimetableScreen = ({ navigation }) => {
   const today = moment();
@@ -114,8 +124,12 @@ const TimetableScreen = ({ navigation }) => {
           </TouchableOpacity>
           <Text style={styles.title}>Timetable</Text>
           <View style={styles.headerIcons}>
+            <TouchableOpacity>
             <Ionicons name="notifications-outline" size={24} color="#fff" />
-            <Ionicons name="menu" size={24} color="#fff" style={styles.menuIcon} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Ionicons name="menu" size={24} color="#fff" style={styles.menuIcon}/>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -191,10 +205,30 @@ const TimetableScreen = ({ navigation }) => {
         </ScrollView>
       </View>
 
-      <TouchableOpacity style={styles.plusIcon}  onPress={() => navigation.navigate('ScheduleForms')}>
+      <TouchableOpacity style={styles.plusIcon}  onPress={() => navigation.navigate('ScheduleForm')}>
         <Ionicons name="add" size={30} color="#01796F" fontWeight="bold" />
       </TouchableOpacity>
     </SafeAreaView>
+  );
+};
+
+const App = () => {
+  return (
+      <Drawer.Navigator
+        drawerContent={(props) => <CustomDrawer {...props} />}
+        screenOptions={{
+          headerShown: false,
+          drawerType: 'front',
+          width:'100%'
+        }}
+      >
+      <Drawer.Screen name="TimetableScreen" component={TimetableScreen} options={{ headerShown: false }}/>
+        <Drawer.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+        <Drawer.Screen name="Tasks" component={Tasks} options={{ headerShown: false }}/>
+        <Drawer.Screen name="CWACalculator" component={CWACalculator} options={{ headerShown: false }}/>
+        <Drawer.Screen name="AiChat" component={AiChat} options={{ headerShown: false }}/>
+        <Drawer.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }}/>
+      </Drawer.Navigator>
   );
 };
 
@@ -325,4 +359,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TimetableScreen;
+export default App;
