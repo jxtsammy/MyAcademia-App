@@ -282,6 +282,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   navigationContainer: {
     flexDirection: 'row',
@@ -290,7 +291,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 50,
     paddingBottom: 20,
-    backgroundColor: '#fff',
   },
   tabContainer: {
     flexDirection: 'row',
