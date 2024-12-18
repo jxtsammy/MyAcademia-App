@@ -6,7 +6,7 @@ import Login from './components/SignInOptions/Login'
 import SignUp from './components/SignInOptions/SignUp'
 import OPTVerification from './components/SignInOptions/OTPCode'
 import EnterPhone from './components/ForgotPassword/EnterPhone'
-import PhoneVerification from './components/ForgotPassword/PhoneVerificationCode'
+import PhoneVerificationCode from './components/ForgotPassword/PhoneVerificationCode'
 import SetNewPassword from './components/ForgotPassword/SetNewPassword'
 import Timetable from './components/Timetable&Schedules/Timetable'
 import ScheduleForm from './components/Timetable&Schedules/ScheduleForm'
@@ -79,8 +79,8 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="EmailVerification"
-          component={PhoneVerification}
+          name="PhoneVerificationCode"
+          component={PhoneVerificationCode}
           options={{ headerShown: false }}
         />
          <Stack.Screen

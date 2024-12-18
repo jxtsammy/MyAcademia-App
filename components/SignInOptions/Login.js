@@ -233,7 +233,6 @@ const styles = StyleSheet.create({
     paddingVertical: 17,
     borderRadius: 30,
     alignItems: 'center',
-    marginBottom: 50,
   },
   loginButtonText: {
     color: '#ffffff',

@@ -91,7 +91,7 @@ const ForgotPasswordScreen = ({navigation}) => {
                 style={styles.ContinueButton}
                 onPress={() => {
                   Keyboard.dismiss();
-                  navigation.navigate('PhoneVerification');
+                  navigation.navigate('PhoneVerificationCode');
                 }}
               >
                 <Text style={styles.ContinueButtonText}>Continue</Text>
