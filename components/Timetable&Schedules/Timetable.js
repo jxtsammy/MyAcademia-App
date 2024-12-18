@@ -2,16 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, FlatList, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
-import { createDrawerNavigator} from '@react-navigation/drawer';
-import CustomDrawer from '../CustomNavigations/CustomDawer'
-import Timetable from '../Timetable&Schedules/Timetable'
-import Tasks from '../TaskPlanner/Tasks'
-import CWACalculator from '../AvgCalculator/AverageCalculator'
-import AiChat from '../AiChat/ChatScreen'
-import EditProfile from '../ProfileSettings/EditProfile'
-import Home from '../Home/Home'
-
-const Drawer = createDrawerNavigator();
 
 const TimetableScreen = ({ navigation }) => {
   const today = moment();
@@ -22,35 +12,43 @@ const TimetableScreen = ({ navigation }) => {
   const [schedules, setSchedules] = useState([
     {
       id: '1',
-      time: '10:00 AM',
-      subject: 'Mobile App',
+      time: '10:00 AM - 12:00 PM',
+      subject: 'Mathematics',
       location: 'Room 101',
       date: '17',
       month: 'Oct 2024',
     },
     {
       id: '2',
-      time: '1:00 PM ',
-      subject: 'Algebra',
+      time: '1:00 PM - 3:00 PM',
+      subject: 'Physics',
       location: 'Room 102',
       date: '17',
       month: 'Oct 2024',
     },
     {
       id: '3',
-      time: '4:00 PM',
-      subject: 'Database',
+      time: '4:00 PM - 6:00 PM',
+      subject: 'Chemistry',
       location: 'Room 103',
       date: '18',
       month: 'Oct 2024',
     },
     {
       id: '4',
-      time: '9:00 AM',
-      subject: 'Visual Basic',
+      time: '9:00 AM - 11:00 AM',
+      subject: 'Biology',
       location: 'Room 104',
       date: '18',
       month: 'Nov 2024',
+    },
+    {
+      id: '5',
+      time: '9:00 AM - 11:00 AM',
+      subject: 'Chemistry',
+      location: 'Room 104',
+      date: '18',
+      month: 'Dec 2024',
     },
   ]);
 
@@ -82,7 +80,7 @@ const TimetableScreen = ({ navigation }) => {
       setSelectedDate(null);
       setSelectedDay(null);
     }
-  }, [selectedMonth, today]);
+  }, [selectedMonth,today]);
 
   const handleDateChange = (day, date) => {
     setSelectedDate(date);
@@ -193,34 +191,12 @@ const TimetableScreen = ({ navigation }) => {
         </ScrollView>
       </View>
 
-      <TouchableOpacity style={styles.plusIcon} onPress={() => navigation.navigate('ScheduleForms')}>
+      <TouchableOpacity style={styles.plusIcon}  onPress={() => navigation.navigate('ScheduleForms')}>
         <Ionicons name="add" size={30} color="#01796F" fontWeight="bold" />
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
-
-const App = () => {
-  return (
-      <Drawer.Navigator
-        drawerContent={(props) => <CustomDrawer {...props} />}
-        screenOptions={{
-          headerShown: false,
-          drawerType: 'front',
-          width:'100%'
-        }}
-      >
-      <Drawer.Screen name="TimetableScreen" component={TimetableScreen} options={{ headerShown: false }}/>
-      <Drawer.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-        <Drawer.Screen name="Timetable" component={Timetable} options={{ headerShown: false }}/>
-        <Drawer.Screen name="Tasks" component={Tasks} options={{ headerShown: false }}/>
-        <Drawer.Screen name="CWACalculator" component={CWACalculator} options={{ headerShown: false }}/>
-        <Drawer.Screen name="AiChat" component={AiChat} options={{ headerShown: false }}/>
-        <Drawer.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }}/>
-      </Drawer.Navigator>
-  );
-};
-
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -237,7 +213,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#01796F',
     paddingVertical: 15,
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
     borderRadius: 50,
     marginBottom: 20,
   },
@@ -248,8 +224,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+    left: 10
   },
   headerIcons: {
     flexDirection: 'row',
@@ -348,4 +325,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default TimetableScreen;
