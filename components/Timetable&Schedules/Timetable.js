@@ -90,7 +90,7 @@ const TimetableScreen = ({ navigation }) => {
       setSelectedDate(null);
       setSelectedDay(null);
     }
-  }, [selectedMonth,today]);
+  }, [selectedMonth,]);
 
   const handleDateChange = (day, date) => {
     setSelectedDate(date);
@@ -205,7 +205,7 @@ const TimetableScreen = ({ navigation }) => {
         </ScrollView>
       </View>
 
-      <TouchableOpacity style={styles.plusIcon}  onPress={() => navigation.navigate('ScheduleForm')}>
+      <TouchableOpacity style={styles.plusIcon}  onPress={() => navigation.navigate('Form')}>
         <Ionicons name="add" size={30} color="#01796F" fontWeight="bold" />
       </TouchableOpacity>
     </SafeAreaView>

@@ -9,7 +9,6 @@ import EnterPhone from './components/ForgotPassword/EnterPhone'
 import PhoneVerificationCode from './components/ForgotPassword/PhoneVerificationCode'
 import SetNewPassword from './components/ForgotPassword/SetNewPassword'
 import Timetable from './components/Timetable&Schedules/Timetable'
-import ScheduleForm from './components/Timetable&Schedules/ScheduleForm'
 import AddTask from './components/TaskPlanner/AddTasks'
 import Tasks from './components/TaskPlanner/AddTasks';
 import CWACalculator from './components/AvgCalculator/AverageCalculator'
@@ -22,6 +21,7 @@ import AiChat from './components/AiChat/ChatScreen'
 import Home from './components/Home/Home'
 import EditProfile from './components/ProfileSettings/EditProfile'
 import CustomDrawer from './components/CustomNavigations/CustomDawer'
+import Form from './components/Timetable&Schedules/Form'
 
 const Stack = createStackNavigator();
 
@@ -94,8 +94,8 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="ScheduleForms"
-          component={ScheduleForm}
+          name="Form"
+          component={Form}
           options={{ headerShown: false }}
         />
         <Stack.Screen
