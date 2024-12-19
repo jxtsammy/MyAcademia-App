@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   backgroundImage: {
-    opacity: 0.1,
+    backgroundColor: 'rgba(0,0,0,0.6)'
   },
   scrollView: {
     flex: 1,
