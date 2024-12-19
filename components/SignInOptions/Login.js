@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   countryPickerContainer: {
-    width: '30%',
+    width: '35%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   phoneNumberContainer: {
-    width: '67%',
+    width: '64%',
     borderColor: '#333',
     borderWidth: 1,
     borderRadius: 25,
