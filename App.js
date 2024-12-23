@@ -21,7 +21,7 @@ import AiChat from './components/AiChat/ChatScreen'
 import Home from './components/Home/Home'
 import EditProfile from './components/ProfileSettings/EditProfile'
 import CustomDrawer from './components/CustomNavigations/CustomDawer'
-import TimetableForm from './components/Timetable&Schedules/Form'
+import TForm from './components/TForm/TForm'
 
 const Stack = createStackNavigator();
 
@@ -94,8 +94,8 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="TimetableForm"
-          component={TimetableForm}
+          name="TForm"
+          component={TForm}
           options={{ headerShown: false }}
         />
         <Stack.Screen
