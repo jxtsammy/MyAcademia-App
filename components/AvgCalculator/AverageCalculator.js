@@ -59,7 +59,6 @@ const AverageScorePredictor = ({navigation}) => {
             value={currentCWA}
             onChangeText={setCurrentCWA}
             placeholder="Enter your current CWA"
-            keyboardType="numeric"
           />
         </View>
 
@@ -70,7 +69,6 @@ const AverageScorePredictor = ({navigation}) => {
             value={targetedCWA}
             onChangeText={setTargetedCWA}
             placeholder="Enter your targeted CWA"
-            keyboardType="numeric"
           />
         </View>
 
@@ -81,7 +79,6 @@ const AverageScorePredictor = ({navigation}) => {
             value={newCreditHours}
             onChangeText={setNewCreditHours}
             placeholder="Enter new credit hours"
-            keyboardType="numeric"
           />
         </View>
 
@@ -92,7 +89,6 @@ const AverageScorePredictor = ({navigation}) => {
             value={completedCreditHours}
             onChangeText={setCompletedCreditHours}
             placeholder="Enter completed credit hours"
-            keyboardType="numeric"
           />
         </View>
 
