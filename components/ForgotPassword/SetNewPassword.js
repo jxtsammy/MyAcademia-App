@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Image, KeyboardAvoidingView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const ChangePassword = ({navigation}) => {
@@ -56,7 +56,7 @@ const ChangePassword = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.inputContainer}>
+        <KeyboardAvoidingView style={styles.inputContainer}>
           <TextInput
             placeholder="Confirm Password"
             placeholderTextColor="#888"
@@ -75,7 +75,7 @@ const ChangePassword = ({navigation}) => {
               color="gray"
             />
           </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
 
         {/* Error message */}
         {errorMessage !== '' && (
