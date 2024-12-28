@@ -48,7 +48,7 @@ const EmailVerificationScreen = ({navigation}) => {
 
       <Text style={styles.title}>Email verification code</Text>
       <Text style={styles.subText}>
-        Enter the code sent to your <Text style={styles.Email}> Email</Text>
+        Enter the code sent to your <Text style={styles.Email}> Phone</Text>
       </Text>
 
       <View style={styles.otpContainer}>
