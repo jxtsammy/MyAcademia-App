@@ -11,7 +11,7 @@ import { createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawer from '../CustomNavigations/CustomDawer'
 import Timetable from '../Timetable&Schedules/Timetable'
 import Tasks from '../TaskPlanner/Tasks'
-import CWACalculator from '../AvgCalculator/AverageCalculator'
+import CWACalculator from '../AvgCalculator/CWACalculator'
 import AiChat from '../AiChat/ChatScreen'
 import EditProfile from '../ProfileSettings/EditProfile'
 import Home from '../Home/Home'

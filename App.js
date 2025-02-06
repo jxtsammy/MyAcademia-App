@@ -11,7 +11,7 @@ import SetNewPassword from './components/ForgotPassword/SetNewPassword'
 import Timetable from './components/Timetable&Schedules/Timetable'
 import AddTask from './components/TaskPlanner/AddTasks'
 import Tasks from './components/TaskPlanner/AddTasks';
-import CWACalculator from './components/AvgCalculator/AverageCalculator'
+import CWACalculator from './components/AvgCalculator/CWACalculator'
 import GetSignedUp from './components/IntroScreens/GetSignedUp'
 import ScheduleIntro from './components/IntroScreens/ScheduleIntro'
 import NotificationIntro from './components/IntroScreens/NotificationsIntro'
@@ -22,6 +22,8 @@ import Home from './components/Home/Home'
 import EditProfile from './components/ProfileSettings/EditProfile'
 import CustomDrawer from './components/CustomNavigations/CustomDawer'
 import TForm from './components/TForm/TForm'
+import CGPACalculator from './components/AvgCalculator/CGPACalculator'
+import CalculatorOptions from './components/AvgCaculator/CalculatorOptions'
 
 const Stack = createStackNavigator();
 
@@ -133,9 +135,19 @@ const App = () => {
           component={CustomDrawer}
           options={{ headerShown: false }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="EditProfile"
           component={EditProfile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CGPACalculator"
+          component={CGPACalculator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CalculatorOptions"
+          component={CalculatorOptions}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

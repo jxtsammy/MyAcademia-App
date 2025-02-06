@@ -6,7 +6,7 @@ import { createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawer from '../CustomNavigations/CustomDawer'
 import Timetable from '../Timetable&Schedules/Timetable'
 import Tasks from '../TaskPlanner/Tasks'
-import CWACalculator from '../AvgCalculator/AverageCalculator'
+import CWACalculator from '../AvgCalculator/CWACalculator'
 import AiChat from '../AiChat/ChatScreen'
 import EditProfile from '../ProfileSettings/EditProfile'
 
@@ -214,7 +214,7 @@ const Home = ({navigation}) => {
 
         {/* Tools Container */}
         <View style={styles.toolsContainer}>
-          <TouchableOpacity style={styles.tool} onPress={() => navigation.navigate('CWACalculator')}>
+          <TouchableOpacity style={styles.tool} onPress={() => navigation.navigate('CalculatorOptions')}>
             <View style={styles.toolContent}>
               <Image
                 source={require('../../assets/calculatoeIcon.png')}
