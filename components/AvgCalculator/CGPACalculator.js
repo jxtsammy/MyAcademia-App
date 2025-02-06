@@ -72,7 +72,7 @@ const AverageScorePredictor = () => {
 
           <View style={styles.scoreContainer}>
             <View style={styles.Background}>
-              <Text style={styles.scoreText}>Cumulative Score</Text>
+              <Text style={styles.scoreText}>Average Score</Text>
               <Text style={styles.percentage}>{calculatedCGPA.toFixed(2)}</Text>
             </View>
           </View>
