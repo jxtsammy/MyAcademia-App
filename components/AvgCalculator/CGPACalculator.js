@@ -55,7 +55,7 @@ const AverageScorePredictor = () => {
 
   return (
     <ImageBackground
-      source={require('../../assets/calc.jpg')} // Replace with your image path
+      source={require('../../assets/17209.jpg')} // Replace with your image path
       style={styles.imageBackground}
     >
       <KeyboardAvoidingView
@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
   },
   nav: {
     flexDirection: 'row',
@@ -152,13 +151,13 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 25,
     fontWeight: '600',
-    color: '#fff',
+    color: '#000',
   },
   navText: {
     fontSize: 30,
     fontWeight: '600',
     marginRight: 10,
-    color: '#fff',
+    color: '#000',
   },
   scoreContainer: {
     alignItems: 'center',
@@ -194,7 +193,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: '#fff',
+    color: '#000',
     flex: 0.6,
     fontWeight: 'bold',
   },
