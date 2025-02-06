@@ -34,7 +34,7 @@ const CustomDrawer = ({ navigation }) => {
               <Feather name="check-square" size={24} color="#fff" />
               <Text style={styles.drawerOptionText}>Tasks</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.drawerOption} onPress={() => navigation.navigate('CWACalculator')}>
+            <TouchableOpacity style={styles.drawerOption} onPress={() => navigation.navigate('CalculatorOptions')}>
               <Feather name="grid" size={24} color="#fff" />
               <Text style={styles.drawerOptionText}>CWA Calculator</Text>
             </TouchableOpacity>
