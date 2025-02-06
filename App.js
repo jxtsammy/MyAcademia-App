@@ -23,7 +23,7 @@ import EditProfile from './components/ProfileSettings/EditProfile'
 import CustomDrawer from './components/CustomNavigations/CustomDawer'
 import TForm from './components/TForm/TForm'
 import CGPACalculator from './components/AvgCalculator/CGPACalculator'
-import CalculatorOptions from './components/AvgCaculator/CalculatorOptions'
+import CalculatorOptions from './components/AvgCalculator/CalculatorOptions'
 
 const Stack = createStackNavigator();
 
