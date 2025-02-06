@@ -111,7 +111,7 @@ const AverageScorePredictor = () => {
           </View>
 
           <View style={styles.inputRow}>
-            <Text style={styles.label}>Total Completed Hours:</Text>
+            <Text style={styles.label}>Total Completed Credits:</Text>
             <TextInput
               style={styles.input}
               value={completedCreditHours}
