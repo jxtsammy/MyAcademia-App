@@ -60,9 +60,6 @@ const SignUpScreen = ({navigation}) => {
                   />
                 </View>
                 <Text style={styles.title}>Sign Up</Text>
-                <Text style={styles.subtitle}>
-                  Register and get access to features to enhance your academic work
-                </Text>
               </View>
 
               {/* Input Fields */}
@@ -174,11 +171,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    bottom: 5
   },
   container: {
     width: '100%',
     maxWidth: 450,
-    padding: 10,
   },
   logoContainer: {
     alignItems: 'center',
@@ -198,12 +195,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#01796F',
     marginBottom: 5
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: '#777',
-    paddingHorizontal: 15,
-    fontSize: 14,
   },
   inputContainer: {
     marginVertical: 10,
@@ -225,7 +216,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   countryPickerWrapper: {
-    width: '30%',
+    width: '35%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -242,7 +233,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   phoneInputWrapper: {
-    width: '66%',
+    width: '63%',
     backgroundColor: '#ffff',
     borderRadius: 30,
     borderWidth: 1,
