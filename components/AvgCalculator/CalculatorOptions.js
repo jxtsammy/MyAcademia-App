@@ -16,7 +16,7 @@ const WelcomeScreen = ({navigation}) => {
       {/* Main Content */}
       <View style={styles.content}>
         <Text style={styles.title}>
-          Welcome to our Cumlative Average Calculator.
+          Welcome to our Exclusive Average Calculator.
         </Text>
 
         <Text style={styles.subtitle}>

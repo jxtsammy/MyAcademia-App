@@ -24,6 +24,11 @@ import CustomDrawer from './components/CustomNavigations/CustomDawer'
 import TForm from './components/TForm/TForm'
 import CGPACalculator from './components/AvgCalculator/CGPACalculator'
 import CalculatorOptions from './components/AvgCalculator/CalculatorOptions'
+import AITimetableIntro from './components/AiTimetable/TimetableIntro'
+import AddCourses from './components/AiTimetable/AddCourses'
+import NumberOfCourses from './components/AiTimetable/NumberOfCourses'
+import AvailabilityTime from './components/AiTimetable/AvailabilityTime'
+import PersonlisedTimetable from './components/AiTimetable/PersonalisedTimetable'
 
 const Stack = createStackNavigator();
 
@@ -148,6 +153,31 @@ const App = () => {
         <Stack.Screen
           name="CalculatorOptions"
           component={CalculatorOptions}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AITimetableIntro"
+          component={AITimetableIntro}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AddCourses"
+          component={AddCourses}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NumberOfCourses"
+          component={NumberOfCourses}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="AvailabilityTime"
+          component={AvailabilityTime}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PersonlisedTimetable"
+          component={PersonlisedTimetable}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
