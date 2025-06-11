@@ -1,0 +1,317 @@
+import React, { useState, useRef, useEffect } from 'react';
+import {
+  View, Text, TextInput, TouchableOpacity, Image, FlatList, StyleSheet,
+  Alert, ActivityIndicator
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import * as Clipboard from 'expo-clipboard';
+import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
+
+const GEMINI_API_KEY = "AIzaSyDNhkOgkgVh64tjr8baQTloXsZ2pTiPrcc";
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-preview-06-05:generateContent?key=" + GEMINI_API_KEY;
+
+const ChatMessage = ({ message, isUser }) => {
+  const handleCopyText = async () => {
+    try {
+      await Clipboard.setStringAsync(message.text);
+      Alert.alert('Copied', 'Text copied to clipboard');
+    } catch {
+      Alert.alert('Error', 'Failed to copy text');
+    }
+  };
+
+  return (
+    <View style={[
+      styles.messageContainer,
+      isUser ? styles.userMessageContainer : styles.botMessageContainer
+    ]}>
+      {!isUser && (
+        <View style={[styles.avatar, styles.aiAvatar]}>
+          <Image source={require('../../assets/chatBackground.jpeg')} style={styles.botAvatarImage} />
+        </View>
+      )}
+      <View style={[
+        styles.messageContent,
+        isUser ? styles.userMessageContent : styles.botMessageContent
+      ]}>
+        {message.image && (
+          <Image source={{ uri: message.image }} style={styles.messageImage} resizeMode="contain" />
+        )}
+        <Text style={[
+          styles.messageText,
+          isUser ? styles.userMessageText : styles.botMessageText
+        ]}>
+          {message.text}
+        </Text>
+        {!isUser && (
+          <TouchableOpacity style={styles.actionButton} onPress={handleCopyText}>
+            <Ionicons name="copy-outline" size={20} color="#666" />
+            <Text style={styles.actionButtonText}>Copy</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+      {isUser && (
+        <Image source={require('../../assets/WayGo.png')} style={styles.avatar} />
+      )}
+    </View>
+  );
+};
+
+const ChatAI = ({ navigation }) => {
+  const [messages, setMessages] = useState([
+    { id: 1, text: "Hello! I'm your academic assistant. How can I help?", isUser: false }
+  ]);
+  const [inputText, setInputText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const flatListRef = useRef();
+
+  const fileToBase64 = async (uri) => {
+    const base64 = await FileSystem.readAsStringAsync(uri, {
+      encoding: FileSystem.EncodingType.Base64
+    });
+    return base64;
+  };
+
+  const getGeminiResponse = async (text, imageUri = null) => {
+    setIsLoading(true);
+    try {
+      const parts = [{ text }];
+      if (imageUri) {
+        const base64 = await fileToBase64(imageUri);
+        parts.push({
+          inline_data: {
+            mime_type: 'image/jpeg',
+            data: base64
+          }
+        });
+      }
+
+      const payload = {
+        contents: [{
+          role: "user",
+          parts: parts
+        }],
+        generationConfig: {
+          response_mime_type: "text/plain"
+        }
+      };
+
+      const response = await fetch(GEMINI_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+      const result = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      return result || "No response.";
+    } catch (error) {
+      console.error("Gemini Flash Error:", error);
+      return "Something went wrong. Try again.";
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission denied', 'Enable photo access to use this feature.');
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled && result.assets?.length > 0) {
+      const imageUri = result.assets[0].uri;
+      const userMessage = { id: Date.now(), image: imageUri, isUser: true };
+      setMessages(prev => [...prev, userMessage]);
+
+      const aiText = await getGeminiResponse("What can you tell me about this image?", imageUri);
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        text: aiText,
+        isUser: false
+      }]);
+    }
+  };
+
+  const handleSend = async () => {
+    if (!inputText.trim() || isLoading) return;
+
+    const userMessage = {
+      id: Date.now(),
+      text: inputText.trim(),
+      isUser: true
+    };
+    setMessages(prev => [...prev, userMessage]);
+    setInputText('');
+
+    const aiResponse = await getGeminiResponse(inputText.trim());
+    setMessages(prev => [...prev, {
+      id: Date.now() + 1,
+      text: aiResponse,
+      isUser: false
+    }]);
+  };
+
+  useEffect(() => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToEnd({ animated: true });
+    }
+  }, [messages]);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.headerLeft}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back" size={30} color="black" />
+          </TouchableOpacity>
+          <Image source={require('../../assets/MyAcademiaLogo.png')} style={styles.headerAvatar} />
+        </View>
+        <Text style={styles.headerTitle}>Ace</Text>
+      </View>
+
+      <View style={styles.messagesContainer}>
+        <FlatList
+          ref={flatListRef}
+          data={messages}
+          renderItem={({ item }) => <ChatMessage message={item} isUser={item.isUser} />}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.scrollView}
+        />
+        {isLoading && (
+          <View style={styles.loadingIndicator}>
+            <ActivityIndicator size="small" color="#01796f" />
+            <Text style={styles.loadingText}>Ace is thinking...</Text>
+          </View>
+        )}
+      </View>
+
+      <View style={styles.inputContainer}>
+        <View style={styles.inputWrapper}>
+          <TextInput
+            style={styles.input}
+            value={inputText}
+            onChangeText={setInputText}
+            placeholder="Ask Ace anything"
+            multiline
+            onSubmitEditing={handleSend}
+            editable={!isLoading}
+          />
+          <TouchableOpacity onPress={pickImage} disabled={isLoading}>
+            <Ionicons name="image-outline" size={24} color="#01796f" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.sendButton, (!inputText.trim() || isLoading) && styles.sendButtonDisabled]}
+            onPress={handleSend}
+            disabled={!inputText.trim() || isLoading}
+          >
+            <Ionicons name="paper-plane" size={20} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#fff' },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    marginTop: 50,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+    backgroundColor: 'white',
+  },
+  headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  headerAvatar: { width: 45, height: 45, borderRadius: 20 },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    position: 'absolute',
+    left: '45%',
+    transform: [{ translateX: -30 }],
+  },
+  messagesContainer: { flex: 1, backgroundColor: '#f0f4f8' },
+  scrollView: { padding: 16 },
+  messageContainer: { flexDirection: 'row', marginBottom: 16 },
+  userMessageContainer: { justifyContent: 'flex-end' },
+  botMessageContainer: { justifyContent: 'flex-start' },
+  avatar: { width: 40, height: 40, borderRadius: 20, marginHorizontal: 12 },
+  aiAvatar: { overflow: 'hidden' },
+  botAvatarImage: { width: '100%', height: '100%', resizeMode: 'cover' },
+  messageContent: { borderRadius: 12, padding: 12, maxWidth: '75%' },
+  messageImage: { width: '100%', height: 200, borderRadius: 8, marginBottom: 8 },
+  userMessageContent: { backgroundColor: '#01796f' },
+  botMessageContent: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  messageText: { fontSize: 16, lineHeight: 22 },
+  userMessageText: { color: '#fff' },
+  botMessageText: { color: '#333' },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  actionButtonText: { marginLeft: 4, color: '#666', fontSize: 14 },
+  inputContainer: {
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    backgroundColor: '#fff',
+  },
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f0f4f8',
+    borderRadius: 24,
+    paddingHorizontal: 12,
+  },
+  input: {
+    flex: 1,
+    minHeight: 40,
+    maxHeight: 120,
+    paddingVertical: 8,
+    fontSize: 16,
+    color: '#333',
+  },
+  sendButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#01796f',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 8,
+  },
+  sendButtonDisabled: { backgroundColor: '#b2dfdb' },
+  loadingIndicator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    backgroundColor: '#e3f2fd',
+    margin: 16,
+    borderRadius: 8,
+  },
+  loadingText: {
+    marginLeft: 8,
+    color: '#01579b',
+    fontSize: 14,
+  },
+});
+
+export default ChatAI;
